@@ -1,0 +1,185 @@
+body {
+  margin: 0px;
+  font-family: 'Lucida Grande', 'Helvetica', sans-serif;
+  background-color: #fff;
+}
+
+.bar {
+  position: fixed;
+  overflow: visible;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 10px;
+  background-color: #eee;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+button.new-note {
+  width: 30px;
+  height: 30px;
+  background-color: rgb(255, 240, 70);
+  border: 1px solid #a80;
+}
+
+button.new-note.blue {
+  background-color: rgb(135, 206, 250);
+  border: 1px solid rgb(51, 51, 255);
+}
+
+button.new-note.green {
+  background-color: rgb(152, 251, 152);
+  border: 1px solid rgb(34, 139, 34);
+}
+
+button.new-note.red {
+  background-color: rgb(255, 182, 193);
+  border: 1px solid rgb(255, 20, 147);
+}
+
+.note {
+  background-color: rgb(255, 240, 70);
+  width:210px;
+  height: 50px;
+  padding: 5px;
+}
+
+.note:after {
+  width:187px;
+  height:25px;
+  content: "";
+  position: absolute;
+  top: 31px;
+  right: 3px;
+  -webkit-box-shadow: 0 5px 5px #555 ;
+  -moz-box-shadow: 0 5px 5px #555 ;
+  box-shadow: 0 5px 5px #555 ;
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+  z-index: -1;
+}
+
+.note.blue {
+  background-color: rgb(135, 206, 250);
+}
+
+.note.green {
+  background-color: rgb(152, 251, 152);
+}
+
+.note.red {
+  background-color: rgb(255, 182, 193);
+}
+
+.drag-note {
+  -webkit-transform: rotate(-10deg);
+  -moz-transform: rotate(-10deg);
+  -o-transform: rotate(-10deg);
+  -ms-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+}
+.drag-note:after {
+  width:187px;
+  height:25px;
+  content: "";
+  position: absolute;
+  top: 31px;
+  right: 2px;
+  -webkit-box-shadow: 0 15px 20px #555 ;
+  -moz-box-shadow: 0 15px 20px #555 ;
+  box-shadow: 0 15px 20px #555 ;
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+  z-index: -1;
+}
+
+.edit-area {
+  background-color: rgb(255, 240, 70);
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  border: none;
+  font-size: 15px;
+  font-family: 'Acme', sans-serif;
+  height: 58px;
+  width: 188px;
+  margin-top: -4px;
+  margin-left: 27px;
+  padding-left: 4px;
+  overflow: hidden;
+  resize: none;
+}
+
+.edit-area.blue {
+  background-color: rgb(135, 206, 250);
+}
+
+.edit-area.green {
+  background-color: rgb(152, 251, 152);
+}
+
+.edit-area.red {
+  background-color: rgb(255, 182, 193);
+}
+
+.drag-area {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 25px;
+  font-size: 9px;
+  background-color: #db0;
+  color: white;
+  border-right: 1px solid #a80;
+  padding: 4px 4px;
+  text-align: left;
+}
+
+.drag-area.blue {
+  background-color: rgb(30, 144, 255);
+  border-right: 1px solid rgb(51, 51, 255);
+}
+
+.drag-area.green {
+  background-color: rgb(50, 205, 50);
+  border-right: 1px solid rgb(34, 139, 34);
+}
+
+.drag-area.red {
+  background-color: rgb(240, 128, 128);
+  border-right: 1px solid rgb(255, 20, 147);
+}
+
+.delete {
+  background-color: #ddd;
+  border: solid 1px #777;
+  -moz-border-radius: 40px;
+  -webkit-border-radius: 40px;
+  background-image: -moz-linear-gradient(-90deg,rgba(255,255,255,0.9),rgba(255,255,255,0));
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0,rgba(255,255,255,0.9)), color-stop(1,rgba(255,255,255,0)));
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.6);
+  -webkit-transition: background-color, .5s;
+  -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+  -moz-box-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+  color: #333;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  margin-top: -13px;
+  margin-left: -13px;
+  font-family: 'Acme', sans-serif;
+  font-size:24px;
+  line-height: 18px;
+}
