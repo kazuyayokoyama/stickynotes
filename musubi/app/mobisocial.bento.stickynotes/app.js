@@ -8,13 +8,18 @@ var devMode = false;
  * Musubi
  */
 Musubi.ready(function(context) {
-  console.log("launching StickyNotes.");
+  console.log("launching StickyNotes");
 
   if (devMode) return;
 
   app = new StickyNotesApp();
   
   appContext = context;
+  
+  var intKey = 0;
+  
+  console.log("appContext.obj= " + appContext.obj);
+  
   var latest = getLatestState();
   if(latest == null) {
     app.newNote('');
@@ -30,9 +35,24 @@ Musubi.ready(function(context) {
   });
   
   function getLatestState() {
-    var result = appContext.feed.query("type = 'stickynotes'", '_id desc limit 1');
-    if (!result.length) return null;
-    else return result[result.length - 1].json.state;
+    var result = Array();
+    if (appContext.obj != null) {
+      result = appContext.obj.query("type = 'appstate'", 'int_key desc limit 1');
+      console.log("subfeed - query: " + result);
+      
+      if (!result.length) {
+        result = appContext.feed.query("_id = '" + appContext.obj.objId + "'", 'int_key desc limit 1');
+        console.log("feed - query: " + result);
+      }
+    }
+    
+    if (!result.length) {
+      return null;
+    }
+    else {
+      intKey = result[result.length - 1].intKey;
+      return result[result.length - 1].json.state;
+    }
   }
   
   function save() {
@@ -40,8 +60,15 @@ Musubi.ready(function(context) {
     var html = getHtml();
     var state = { notes: app.getNotes() };
     var content = { "__html": html, "text": text, "state": state };
-    var obj = new SocialKit.Obj({type : "stickynotes", json: content});
-    appContext.feed.post(obj);
+
+    if (appContext.obj == null) {
+      var obj = new SocialKit.Obj({type : "stickynotes", json: content, intKey: intKey});
+      appContext.feed.post(obj);
+    } else {
+      var obj = new SocialKit.Obj({type : "appstate", json: content, intKey: ++intKey});
+      appContext.obj.session = appContext.feed.session;
+      appContext.obj.post(obj);
+    }
   }
   
   function getHtml() {
